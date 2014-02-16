@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<%= render :partial => "layouts/head" %>
+<body>
+	<div id="main">
+		<% if user_signed_in? %>
+		  <div id="user_login_box">
+		    <%= link_to current_user.name, edit_user_registration_path %> |
+				<%= content_tag(:span, current_user.role.blank? ? "User" : current_user.role, :class => "user_role") %> |
+		    <%= link_to 'Sign out', destroy_user_session_path %>
+		  </div><!-- #user_login_box -->
+		<% end %>
+		<div class="clear"></div>
+		
+		<!--
+		<div id="ajax-loader">
+			<span>Loading...</span>
+		</div>
+		-->
+		
+		<div id="header">
+			<div id="app_name"><%= t("app_name") %></div>
+			<div id="app_description"><%= t("app_desc") %></div>
+		</div>
+		
+		<div id="menu">
+			<%= render_navigation %>
+		</div><!-- #menu -->
+		<div class="clear"></div>
+		
+		<div id="content">
+			<div id="notifications">
+				<% flash.each do |name, msg| %>
+		      <%= content_tag :div, msg, :class => "#{name}" if msg.is_a?(String) %>
+		    <% end %>
+			</div><!-- #notifications -->
+
+			<h1><%= yield :header %></h1>
+			<div class="actions">
+				<ul>
+					<%= yield :actions %>
+				</ul>
+			</div>
+			<%= yield %>	
+		</div><!-- #content -->
+		<div class="clear"></div>
+
+		<div id="footer">
+			&copy; Josef Sin 2011
+		</div><!-- #footer -->
+	</div><!-- #container -->
+</body>
+</html>

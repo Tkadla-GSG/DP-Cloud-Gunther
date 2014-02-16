@@ -1,0 +1,19 @@
+<%= form_for(@algorithm) do |f| %>
+	<%= render :partial => 'shared/form_errors', :locals => {:resource => @algorithm} %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :class => "title" %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :class => "description" %>
+  </div>
+  <div class="field">
+    <%= f.label :launch_params %><br />
+    <%= f.text_field :launch_params, :class => "text long" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %> or <%= link_to "Cancel", :back %>
+  </div>
+<% end %>

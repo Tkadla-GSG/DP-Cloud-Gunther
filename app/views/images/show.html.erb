@@ -1,0 +1,49 @@
+<%= content_for :header do %>
+	<%= link_to @image.cloud_engine.title, @image.cloud_engine %>
+	&raquo;
+	<%= @image.title %>
+<% end %>
+
+
+<div class="resource_detail">
+	<table>
+		<tr>
+			<th>Engine title:</th>
+			<td><%= link_to @image.cloud_engine.title, @image.cloud_engine %></td>
+			<th>Created:</th>
+			<td><%= l @image.created_at %></td>
+		</tr>
+		<tr>
+			<th>Engine type:</th>
+			<td><%= @image.cloud_engine.engine_type %></td>
+			<th>Last update:</th>
+			<td><%= l @image.updated_at %></td>
+		</tr>
+	</table>
+	
+	<div>
+	  <p><span class="label">Description:</span><%= @image.description %></p>
+	</div>
+	<hr />
+
+	<div class="ap_container">
+	  <p><span class="label">Launch Params:</span></p>
+		<div class="ap"><%= raw ap @image.launch_params %></div>
+	</div>
+	<hr />
+
+	<div class="ap_container">
+	  <p><span class="label">Start-up Script:</span></p>
+		<pre><%= @image.start_up_script %></pre>
+	</div>
+	<hr />
+	
+</div>
+
+<div class="field">
+	<%= link_to 'Edit', edit_cloud_engine_image_path(@cloud_engine, @image) %> |
+	<%= link_to 'Verify availability', verify_availability_cloud_engine_image_path(@cloud_engine, @image), :method => :post %> |
+	<%= link_to t('default.back'), cloud_engine_path(@cloud_engine) %>
+</div>
+
+

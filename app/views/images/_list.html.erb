@@ -1,0 +1,25 @@
+<table>
+	<thead>
+	  <tr>
+	    <th><%= sort_link @search, :title %></th>
+	    <th><%= sort_link @search, :updated_at, "Last update" %></th>
+	    <th>Actions</th>
+	  </tr>
+	</thead>
+
+	<tbody>
+	<% images.each do |image| %>
+	  <tr>
+			<td><%= link_to image.title, cloud_engine_image_path(image.cloud_engine, image) %></td>
+			<td><%= l image.updated_at %></td>
+			<td>
+		    <%= link_to 'Show', cloud_engine_image_path(image.cloud_engine, image) %>
+		    <%= link_to 'Edit', edit_cloud_engine_image_path(image.cloud_engine, image) %>
+		    <%= link_to 'Destroy', cloud_engine_image_path(image.cloud_engine, image), :confirm => 'Are you sure?', :method => :delete %>
+			</td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+
+<%= pagination(images) %>

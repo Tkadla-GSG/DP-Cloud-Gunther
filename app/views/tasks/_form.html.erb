@@ -1,0 +1,119 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'tasks' %>
+<% end %>
+
+<%= form_for(@task) do |f| %>
+	<%= render :partial => 'shared/form_errors', :locals => {:resource => @task} %>
+	
+	<fieldset>
+		<legend>Algorithm &amp; Cloud Engine</legend>
+		<div class="line">
+		  <div class="field unit size1of1">
+		    <%= f.label :algorithm_binary_id %><br />
+		    <%= f.select :algorithm_binary_id, grouped_options_for_select(active_binaries_for_select, @task.algorithm_binary_id) %>
+		  </div>
+			<div class="field">
+		    <%= f.label :cloud_engine_id %><br />
+		    <%= f.select :cloud_engine_id, cloud_engines_options_for_select(@task.cloud_engine_id), { :include_blank => true } %>
+			</div>
+			<div class="field">
+		    <%= f.label :image_id %><br />
+		    <%= f.select :image_id, options_from_collection_for_select(Image.all, :id, :title, @task.image_id) %>
+		  </div>
+			<div class="field">
+		    <%= f.label :state %> <em>(Only for development)</em><br />
+		    <%= f.select :state, options_for_select(["", "new", "ready", "finished"], @task.state) %>
+		  </div> 
+		</div>
+	</fieldset>
+	
+	
+	<fieldset>
+		<legend>Inputs &amp; Params</legend>
+	  <div class="field">
+			<div class="field">
+				<%= label_tag 'params[text_field]', "Params from direct input" %>
+				<%= radio_button_tag 'params', 'text_field', true, :class => 'input_switcher' %>
+			
+				<%= label_tag 'params[file_field]', "Params from file" %>
+				<%= radio_button_tag 'params', 'file_field', false, :class => 'input_switcher' %>
+			</div>
+		
+			<div class="togglable text_field">
+		    <%= f.label :params %><br />
+		    <%= f.text_area :params, :class => "wide" %>
+			</div>
+		  <div class="togglable file_field nodisplay">
+				<p class="alert">Not implemented yet.</p>
+		    <%#= f.label :params_file %><br />
+		    <%#= f.file_field :params_file, :class => "wide" %>
+		  </div>
+	  </div>
+
+	  <div class="field">
+			<div class="field">
+				<%= label_tag 'inputs[text_field]', "Inputs from direct input" %>
+				<%= radio_button_tag 'inputs', 'text_field', true, :class => 'input_switcher' %>
+			
+				<%= label_tag 'inputs[file_field]', "Inputs from file" %>
+				<%= radio_button_tag 'inputs', 'file_field', false, :class => 'input_switcher' %>
+			</div>
+
+			<div class="togglable text_field">
+		    <%= f.label :inputs %><br />
+		    <%= f.text_area :inputs, :class => "wide" %>
+			</div>
+			<div class="togglable file_field nodisplay">
+				<p class="alert">Not implemented yet.</p>
+		    <%#= f.label :inputs_file %><br />
+		    <%#= f.file_field :inputs_file, :class => "wide" %>
+			</div>
+	  </div>
+	</fieldset>
+	
+	<fieldset id="instances_settings" class="">
+		<legend>Instances settings</legend>
+		<%= f.fields_for :task_params do |params_builder| %>
+		<div class="unit size1of2">
+			<div class="field">
+				<%= params_builder.label :zone_name %><br />
+				<%= params_builder.select :zone_name, options_for_select([], @task.zone_name),
+				 							:include_blank => false, :class => "text" %>
+			</div>
+			<div class="field">
+				<%= params_builder.label :instance_type %><br />
+				<%= params_builder.select :instance_type, options_for_select(Image::INSTANCE_TYPES, @task.instance_type), 
+												:include_blank => true, :class => "text" %>
+			</div>
+			<div class="field">
+				<%= params_builder.label :instances_count %><br />
+				<%= params_builder.text_field :instances_count, :class => "text", 
+							:type => :number, :min => 1, :step => 1, :value => @task.instances_count %>
+			</div>
+		</div>
+		<div class="zones_info_container unit size2of2 lastUnit">
+			<%# zones_info = VerboseAvailabilityZonesInfo.get_info %>
+			<%#= render :partial => "shared/availability_zones_info", :locals => { :zones_info => zones_info } %>
+		</div>
+	<% end %>		
+	</fieldset>
+
+	<!--
+	<fieldset id="params" class="">
+		<legend>Task's Params</legend>
+		<%= f.fields_for :task_params do |params_builder| %>
+		<div class="unit size1of1 lastUnit">
+			<p class="alert">Seage algorithm only! Not implemented yet!</p>
+			<div class="field">
+				<%= params_builder.check_box :preconfiguration_required, :class => "" %>
+				<%= params_builder.label :preconfiguration_required, "Run preconfiguration before starting the task" %><br />
+			</div>
+		</div>
+		<% end %>
+	</fieldset>
+	-->
+	
+  <div class="actions">
+    <%= f.submit %> or <%= link_to "Cancel", :back %>
+  </div>
+<% end %>

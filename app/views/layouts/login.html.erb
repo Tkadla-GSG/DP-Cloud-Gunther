@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<%= render :partial => "layouts/head" %>
+<body>
+	<div id="sign_up_container">
+		<% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :class => "#{name}" if msg.is_a?(String) %>
+    <% end %>
+
+		<div id="content">
+			<h1><%= yield :header %></h1>
+			<%= yield %>	
+		</div><!-- #content -->
+
+		<div id="footer">
+			&copy; Josef Sin 2011
+		</div><!-- #footer -->
+	</div><!-- #container -->
+</body>
+</html>

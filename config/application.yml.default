@@ -1,0 +1,19 @@
+# Custom application configs
+
+default: &default
+  host: localhost:3000
+  start_instances: false
+  configure_instances: false
+  per_page: 25
+  scheduler_interval: 5
+  finished_task_check_interval: 120
+  attempts_to_rerun_task: 5
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require File.dirname(__FILE__) + "/resque_worker"
+Daemons::ResqueWorker.new.run! "resque_worker"

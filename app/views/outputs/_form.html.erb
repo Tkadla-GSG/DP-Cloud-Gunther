@@ -1,0 +1,15 @@
+<%= form_for(@output) do |f| %>
+	<%= render :partial => 'shared/form_errors', :locals => {:resource => @output} %>
+
+  <div class="field">
+    <%= f.label :task_id %><br />
+    <%= f.text_field :task_id %>
+  </div>
+  <div class="field">
+    <%= f.label :output %><br />
+    <%= f.text_area :output %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

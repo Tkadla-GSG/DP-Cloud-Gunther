@@ -1,0 +1,71 @@
+<%= form_for([@cloud_engine, @image]) do |f| %>
+	<%= render :partial => 'shared/form_errors', :locals => {:resource => @image} %>
+
+	<fieldset id="image_detail_information" class="">
+		<legend>Image Detail Information</legend>
+		
+		<div class="field">
+			<%= f.label :title %><br />
+			<%= f.text_field :title, :class => "text title long" %>
+		</div>
+	
+		<div class="field">
+			<%= f.label :cloud_engine_id %><br />
+			<%= f.select :cloud_engine_id, options_from_collection_for_select(CloudEngine.all, :id, :title, @image.cloud_engine_id) %>
+		</div>
+
+		<div class="field">
+			<%= f.label :description %><br />
+			<%= f.text_area :description, :class => "text description" %>
+		</div>
+	</fieldset>
+	
+	<fieldset id="launch_params" class="line">
+		<legend>Launch params</legend>
+		
+		<%= f.fields_for :launch_params do |f_params| %>
+		<div class="field">
+			<%= f_params.label :image_id %><br />
+			<%= f_params.text_field :image_id, :value => @image.image_id, :class => "text" %>
+		</div>
+		<div class="field">
+			<%= f_params.label :instance_type %><br />
+			<%= f_params.select :instance_type, options_for_select(Image::INSTANCE_TYPES, @image.instance_type), 
+											:include_blank => true, :class => "text" %>
+		</div>
+		<div class="field">
+			<%= f_params.label :availability_zone %><br />
+			<%= f_params.text_field :availability_zone, :value => @image.availability_zone, :class => "text" %>
+		</div>
+		<% end %>
+	</fieldset>
+
+	<fieldset class="line">
+		<legend>Start up script</legend>
+		
+		<div class="unit size3of4">
+			<div class="field">
+				<%= f.label :start_up_script %><br />
+				<%= f.text_area :start_up_script, :class => "text wide" %>
+			</div>
+		</div>
+		
+		<div class="unit size1of4 lastUnit">
+			<div class="field info-help">
+				<%= render :partial => "shared/help/start_up_script_help" %>
+			</div>
+			<div class="field info-help">
+				<%= render :partial => "shared/help/macro_syntax_help" %>
+			</div>
+		</div>
+	</fieldset>
+	
+	<fieldset id="actions" class="">
+		<legend>Actions</legend>
+
+	  <div class="actions">
+	    <%= f.submit %> or <%= link_to "Cancel", :back %>
+	  </div>
+	</fieldset>
+
+<% end %>

@@ -1,0 +1,7 @@
+<h1><%= t('image.title').pluralize %></h1>
+
+<p>
+	<%= link_to 'New Image', new_image_path %>
+</p>
+
+<%= render :partial => 'images/list', :locals => { :images => @images } %>

@@ -1,0 +1,44 @@
+<% content_for :head, javascript_include_tag("user_groups") %>
+
+<%= form_for(@user_group) do |f| %>
+	<%= render :partial => 'shared/form_errors', :locals => {:resource => @user_group} %>
+	
+	<fieldset id="group_definition" class="">
+		<legend>Group Definition</legend>
+		
+		<div class="field">
+			<%= f.label :name %><br />
+			<%= f.text_field :name, :class => "text title long" %>
+		</div>
+	
+		<div class="field">
+			<%= f.label :priority %><br />
+			<%= select_priority(f, @user_group.priority) %>
+		</div>
+	
+		<!--
+		<div class="field">
+			<%= f.label :permissions_store, "Permissions DSL" %><br />
+			<%= f.text_area :permissions_store %>
+		</div>
+		-->
+	</fieldset>
+	
+	<fieldset id="users_group_assigment" class="">
+		<legend>Users Group Assigment</legend>
+
+		<%= f.label :users, "Assigned Users" %><br />
+		<%= f.text_field :user_tokens, :class => "text long", 
+						"data-pre" => @user_group.users.map { |v| { "id" => v.id, "name" => v.name } }.to_json,
+						"data-users-path" => tokeninput_users_path(:format => :json)	%>
+  </fieldset>
+	
+	<fieldset id="actions" class="">
+		<legend>Actions</legend>
+		
+		<div class="actions">
+	    <%= f.submit %> or <%= link_to "Cancel", :back %>
+	  </div>
+	</fieldset>
+	
+<% end %>

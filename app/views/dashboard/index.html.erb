@@ -1,0 +1,9 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'dashboard' %>
+<% end %>
+
+<% content_for :header, "Dashboard" %>
+
+<%= render :partial => "dashboard/recent_tasks" %>
+<%= render :partial => "dashboard/cloud_engine_info" %>
+<%= render :partial => "dashboard/queues_info" %>

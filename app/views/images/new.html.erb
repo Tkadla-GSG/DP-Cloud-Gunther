@@ -1,0 +1,8 @@
+<%= content_for :header do %>
+	<%= link_to @image.cloud_engine.title, @image.cloud_engine %>
+	&raquo;
+	New <%= t('image.title') %>
+<% end %>
+
+<%= render 'form' %>
+

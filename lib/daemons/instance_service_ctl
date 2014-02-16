@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require File.dirname(__FILE__) + "/instance_service"
+Daemons::InstanceService.new.run! "instance_service"

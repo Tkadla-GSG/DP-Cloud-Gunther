@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require File.dirname(__FILE__) + "/outputs_worker"
+Daemons::OutputsWorker.new.run! "outputs_worker"

@@ -1,0 +1,65 @@
+<% content_for :header do %>
+	<%= link_to "Users", users_path %>
+	&raquo;
+	<%= "#{@user.name}'s Account Detail" %>
+<% end %>
+
+<div class="resource_detail">
+	<table>
+		<tr>
+			<th>First name:</th>
+			<td><%= @user.first_name %></td>
+		</tr>
+		<tr>
+			<th>Last name:</th>
+			<td><%= @user.last_name %></td>
+		</tr>
+		<tr>
+			<th>Email:</th>
+			<td><%= mail_to @user.email %></td>
+		</tr>
+		<tr>
+			<th>Admin:</th>
+			<td><%= @user.admin? %></td>
+		</tr>
+		<tr>
+			<th>Account status:</th>
+			<td><%= @user.state %></td>
+		</tr>
+		<% if @user.locked_at %>
+		<tr>
+			<th>Account locked at:</th>
+			<td><%= @user.locked_at %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<th>Sign in count</th>
+			<td><%= @user.sign_in_count %></td>
+		</tr>
+		<tr>
+			<th>Last sign in at</th>
+			<td><%= l @user.last_sign_in_at if @user.last_sign_in_at %></td>
+		</tr>
+		<tr>
+			<th>Authentication Token</th>
+			<td><%= @user.authentication_token %></td>
+		</tr>
+		<tr>
+			<th>Unix UID</th>
+			<td><%= @user.unix_uid %></td>
+		</tr>
+	</table>
+</div>
+
+<h2>User Groups</h2>
+
+<div class="resource_detail">
+	<ul>
+	<% @user.user_groups.each do |group| %>
+		<%= content_tag :li, link_to(group.name, user_group_path(group)) %>
+	<% end %>
+	</ul>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', :back %>

@@ -1,0 +1,34 @@
+<table>
+	<thead>
+	  <tr>
+			<th><%= sort_link search, :id, "#"%></th>
+	    <th><%= sort_link search, :last_name, "Name" %></th>
+	    <th><%= sort_link search, :email %></th>
+			<th><%= sort_link search, :admin %></th>
+			<th><%= sort_link search, :state %></th>
+			<th><%= sort_link search, :last_sign_in_at %></th>
+	    <th>Actions</th>
+	  </tr>
+	</thead>
+
+	<tbody>
+	<% users.each do |user| %>
+	  <tr>
+			<td><%= user.id %></td>
+	    <td><%= link_to user.name, user %></td>
+	    <td><%= mail_to user.email %></td>
+	    <td><%= user.admin? %></td>
+	    <td><%= user.state %></td>
+	    <td><%= l user.last_sign_in_at if user.last_sign_in_at %></td>
+	    <td>
+		    <%= link_to 'Detail', user_path(user) %>
+		    <%= link_to 'Edit', edit_user_path(user) %>
+		    <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+				<%= link_to 'Change password', change_password_user_path(user) %>
+			</td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+
+<%= pagination(users) %>

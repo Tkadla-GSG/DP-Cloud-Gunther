@@ -1,0 +1,185 @@
+/********************
+********* Mixins
+*********************/
+.nopa { padding:0; }
+.noma { margin:0; }
+.clear { clear: both; height: 0; overflow: hidden; }
+.nodisplay { display:none; }
+.device_links { margin: 1em 0; }
+.inline { display:inline; }
+
+/********************
+********* Colors
+*********************/
+@background_color: #4B7399;
+@content_background_color: #FFF;
+@header_background_color: #03507B;
+
+/********************
+********* Layout
+*********************/
+body {
+	.nopa;
+	.noma;
+  background-color: @background_color;
+}
+
+
+#main, #sign_up_container {
+	width: 85%;
+  margin: 0 auto;
+  background-color: @content_background_color;
+
+  border: solid 1px black;
+}
+
+#main { }
+#sign_up_container { 
+  margin-top: 20px;
+	padding: 20px 40px;
+	width: 40%; 
+}
+
+#header {
+	background-color: @header_background_color;
+	color: @content_background_color;
+	padding: 4px 100px;
+	border-bottom: 5px solid darken(@header_background_color, 10%);
+	
+	#app_name { font-size:30px; font-weight:bold; }
+	#app_description { font-style: italic; }
+}
+
+#content {
+	padding: 20px 40px;
+}
+
+#user_login_box, #footer {
+	padding: 5px 20px;
+	text-align: right;
+}
+
+#footer { 
+}
+
+#notifications {
+	margin-top:1em;
+}
+
+#menu {
+	.noma;
+	height:30px;
+	ul.navigation {
+		width:100%;
+		.noma;
+		.nopa;
+
+		li {
+			background-color: lighten(@header_background_color, 7%);
+			float:left;
+			height:30px;
+			border:1px solid darken(@header_background_color, 5%);
+			list-style-type:none;
+			
+			a { 
+				display:block; 
+				padding:10px 14px 5px; /* top left-right bottom */
+				height:20px;
+				.noma;
+				color: @content_background_color; 
+				font-weight:bold; 
+				text-decoration: none; 
+			}
+			a:hover { 
+				text-decoration: underline; 
+			}
+		}
+		li:hover { background-color: lighten(@header_background_color, 10%); }
+		li.current { 
+			background-color: lighten(@header_background_color, 15%);
+		}
+		
+		li.admin { float:right; margin-right: 0; }
+	}
+}
+
+/*********************
+********* Standard tags
+*********************/
+h1 { font-size: 2.5em; }
+
+
+/*********************
+********* Forms
+*********************/
+div.field { margin: 0 0 1.5em; }
+
+form {
+	.long { width: 600px; }
+	textarea.description, textarea.elastic { height:100px; }
+	textarea.wide { width: 90%; }
+}
+
+
+/*********************
+********* RoR validations
+*********************/
+.field_with_errors { padding: 0.5em; background: #fbe3e4; border: 2px solid #fbc2c4; }
+.field_with_errors label { color: #8a1f11; }
+.field_with_errors input { border-color: red; }
+#error_explanation { padding: 0.8em; margin-bottom: 1em; border: 2px solid #fbc2c4; background: #fbe3e4; color: #8a1f11; }
+#error_explanation h2 { font-weight: bold; color:#8a1f11; font-size: 120%; }
+#error_explanation p { color: #333; margin-bottom: 0; padding: 8px; }
+#error_explanation ul { margin: 2px 24px; }
+#error_explanation ul li { list-style: disc; }
+
+
+/*********************
+********* Dashboard
+*********************/
+.highlight, .mini-highlight {
+    background: -moz-linear-gradient(center top, #f0f0f0 0%,#e0e0e0 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f0f0f0),color-stop(1, #e0e0e0));
+    border: 2px solid #e0e0e0;
+}
+
+.highlight, .highlight-right { width: 120px; font-size: 120%; text-align:center; padding:10px; background-color: #ddd; margin: 0 20px 0 0; color: #888; border-radius: 10px; -moz-border-radius: 10px; }
+.highlight strong, .highlight-right strong { font-size: 2em; display: block; color: #444; font-weight: normal; }
+.highlight { float: left; }
+.highlight-right { float: right; }
+
+
+/*********************
+********* Resource detail
+*********************/
+.resource_detail {
+	background-color: #ffd;
+	border: 1px solid #d7d7d7;
+	margin: 2em 0;
+	padding: 1em;
+	
+	table { tr {
+		td { background: none; }
+		th { text-align: left; }
+	} } 
+	
+	hr { background: #ccc; border: none; height: 1px; width: 100%; }
+	div { display: block; }
+	div.ap_container {
+		span.label { display: block; font-weight: bold; }
+		p { margin: 1em 0px; }
+		pre { .nopa; .noma; display:inline; }
+	}
+}
+
+pre.output { padding:0.5em; border:1px solid #ddd; background-color: #ffd; }
+pre.stderr { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+
+
+
+
+
+
+
+
+

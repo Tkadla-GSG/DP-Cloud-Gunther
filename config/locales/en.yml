@@ -1,0 +1,33 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  app_name: Cloud Gunther
+  app_desc: Tame Cloud With Fun
+  default:
+    edit: Edit
+    back: Back to list
+  task:
+    title: Task
+    new: New Task
+  user:
+    title: User
+  cloud_engine:
+    title: Cloud Engine
+    new: New Cloud Engine
+  image:
+    title: Image
+    new: New Image
+    start_up_script_help_title: How start up script works?
+  algorithm:
+    title: Algorithm
+    new: New Algorithm
+  algorithm_binary:
+    title: Algorithm Version
+    new: New Algorithm Version
+  time:
+    formats:
+      default: "%Y-%m-%d %H:%M"
+      # defualt: "%a %d. %B %Y %H:%M %z"
+      # long: "%A %d. %B"    
+  

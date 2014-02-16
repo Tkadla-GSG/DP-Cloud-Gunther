@@ -1,0 +1,44 @@
+<%= content_for :header, "#{t('algorithm.title')} - #{@algorithm.name}" %>
+
+<div class="resource_detail">
+	<table>
+		<tr>
+			<th>Author:</th>
+			<td><%= @algorithm.user.name %></td>
+			<th>Created:</th>
+			<td><%= l @algorithm.created_at %></td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td>&nbsp;</td>
+			<th>Last update:</th>
+			<td><%= l @algorithm.updated_at %></td>
+		</tr>
+	</table>
+
+	<hr />
+
+	<div>
+	  <p><span class="label">Description:</span><%= @algorithm.description %></p>
+	</div>
+	<hr />
+
+	<div>
+		<p><span class="label">Launch params:</span><pre><%= @algorithm.launch_params %></pre></p>
+	</div>
+</div>
+
+<div class="field">
+	<%= link_to 'Edit', edit_algorithm_path(@algorithm) %> |
+	<%= link_to t('default.back'), algorithms_path %>
+</div>
+
+
+<h2><%= t("algorithm_binary.title").pluralize %></h2>
+
+<div class="field">
+	<%= link_to t('algorithm_binary.new'), new_algorithm_algorithm_binary_path(@algorithm) %>	
+</div>
+
+<%= render :partial => "algorithm_binaries/list", :locals => { :algorithm_binaries => @algorithm_binaries } %>
+

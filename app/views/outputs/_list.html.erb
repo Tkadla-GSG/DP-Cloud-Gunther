@@ -1,0 +1,30 @@
+<table>
+	<thead>
+	  <tr>
+	    <th><%= sort_link @search, :id, "#" %></th>
+	    <th><%= sort_link @search, :instance_id %></th>
+	    <th><%= sort_link @search, :stdout %></th>
+	    <th><%= sort_link @search, :stderr %></th>
+			<th><%= sort_link @search, :created_at %></th>
+			<th>Actions</th>
+	  </tr>
+	</thead>
+
+	<tbody>
+	<% outputs.each do |output| %>
+	  <tr>
+	    <td><%= output.id %></td>
+	    <td><%= output.params[:instance_id] if output.params %></td>
+	    <td><%= truncate(output.stdout) %></td>
+	    <td><%= truncate(output.stderr) %></td>
+			<td><%= l output.updated_at %></td>
+	    <td>
+				<%= link_to 'Detail', task_output_path(output.task, output) %>
+				<%= link_to 'Destroy', task_output_path(output.task, output), :confirm => 'Are you sure?', :method => :delete %>
+			</td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+
+<%= pagination(outputs) %>
